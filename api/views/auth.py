@@ -18,7 +18,7 @@ class SendOtpTokenApi(APIView):
         if serializer.is_valid():
             phone = serializer.validated_data.get('phone', None)
             otp = generate_otp_code()
-            set_value(f"otp:{phone}", otp, ttl=120)
+            set_value(f"otp:{phone}", otp, ttl=3600)
             
             return Response(
                 {"message": "OTP SEND", "DEBUG": (otp, phone)},
